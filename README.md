@@ -47,3 +47,11 @@ Register template sadrži formu za unos username-a, password-a i ponovljene
 šifre, i podatke šalje preko forme na odgovarajuću rutu. Nakon uspešne
 registracije, korisnika redirektovati na login template. Nakon neuspešne
 registracije, flash-ovati greške.
+
+Radi jednostavnosti, **ne heširati šifre**.
+
+Koristeći dekorator iz flask-a, definisati funkciju koja učitava korisnikove
+podatke iz sesije i smešta ih u globalni objekat.
+
+Definisati dekorator koji brani pristup **View-ovima** ukoliko korisnik nije
+ulogovan i redirektuje na login view.
