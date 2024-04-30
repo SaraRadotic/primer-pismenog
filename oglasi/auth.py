@@ -37,7 +37,8 @@ def login():
 
 @bp.route("/logout", methods=["GET"])
 def logout():
-    pass
+    session.pop("user", None)
+    redirect(url_for("index"))
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
