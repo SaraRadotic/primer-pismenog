@@ -25,3 +25,22 @@ flask --app oglasi run --debug
 
 Trebalo bi da, nakon izvršavanja prethodnih komandi, se upali flask server na
 portu `5000`.
+
+## 1. Autentifikacija
+
+Potrebno je definisati **Blueprint** nazvan `auth` koji sadrži rute:
+
+-   `login`
+-   `register`
+-   `logout`
+
+Definisati **Template** za:
+
+-   `login`
+-   `register`
+
+Login template sadrži formu za unos username-a i password-a i podatke šalje
+preko forme na odgovarajuću rutu.
+
+Register template sadrži formu za unos username-a, password-a i ponovljene šifre
+i podatke šalje preko forme na odgovarajuću rutu.
