@@ -40,7 +40,10 @@ Definisati **Template** za:
 -   `register`
 
 Login template sadrži formu za unos username-a i password-a i podatke šalje
-preko forme na odgovarajuću rutu.
+preko forme na odgovarajuću rutu. Nakon uspešnog login-a, uputiti korisnika na
+početnu stranicu. Nakon neuspešnog, flash-ovati greške.
 
-Register template sadrži formu za unos username-a, password-a i ponovljene šifre
-i podatke šalje preko forme na odgovarajuću rutu.
+Register template sadrži formu za unos username-a, password-a i ponovljene
+šifre, i podatke šalje preko forme na odgovarajuću rutu. Nakon uspešne
+registracije, korisnika redirektovati na login template. Nakon neuspešne
+registracije, flash-ovati greške.
