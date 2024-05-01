@@ -1,5 +1,6 @@
-from flask import Blueprint, flash, redirect, render_template, request, session, url_for
+from flask import Blueprint, flash, redirect, render_template, request, session, url_for, g
 from werkzeug.security import check_password_hash, generate_password_hash
+import functools
 from .db import get_db
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -43,7 +44,7 @@ def load_logged_in_user():
         g.user = get_db().execute(
             "SELECT * FROM korisnik WHERE id = ?", (user_id,)
         ).fetchone()
-    
+
 
 @bp.route("/logout", methods=["GET"])
 def logout():
