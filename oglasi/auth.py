@@ -25,7 +25,8 @@ def login():
         if error is None:
             # ulogujemo korisnika
             session.clear()
-            session["korisnik"] = korisnik
+            print("User id: ", korisnik['id'])
+            session["user_id"] = korisnik['id']
             return redirect(url_for("index"))
 
         flash(error)
@@ -46,8 +47,8 @@ def load_logged_in_user():
 
 @bp.route("/logout", methods=["GET"])
 def logout():
-    session.pop("user", None)
-    redirect(url_for("index"))
+    session.pop("user_id", None)
+    return redirect(url_for("index"))
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
