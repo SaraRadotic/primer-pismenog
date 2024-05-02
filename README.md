@@ -55,3 +55,38 @@ podatke iz sesije i smešta ih u globalni objekat.
 
 Definisati dekorator koji brani pristup **View-ovima** ukoliko korisnik nije
 ulogovan i redirektuje na login view.
+
+## 2. Oglasi
+
+### Blueprint
+
+Napraviti `oglas.py` fajl koji definise **Blueprint** `oglas` sa prefiksom
+`\oglas`. Registrovati dati **blueprint** u `__init__.py` fajlu.
+
+### Kreiranje oglasa
+
+Napraviti **view** i **template** za kreiranje novog oglasa. Link za kreiranje
+novog oglasa treba biti dostupan samo ulogovanim korisnicima. Zabraniti pristup
+putanji neulogovanim korisnicima koristeci kreirani dekorator. Forma koja kreira
+oglas treba da ima inpute za:
+
+-   Naslov
+-   Opis
+-   Kategoriju (select)
+-   Cenu
+
+### Prikaz oglasa
+
+Napraviti **template** i **view** za prikaz svih oglasa. Raditi po uzoru na
+`blog` **blueprint** iz flask tutorijala. Ukoliko je ulogovani korisnik vlasnik
+oglasa, prikazati link za izmenu oglasa.
+
+### Izmena oglasa
+
+Napraviti **template** i **view** za izmenu postojecih oglasa. Dati link je
+dostupan samo onom korisniku koji je kreirao oglas.
+
+### Brisanje oglasa
+
+Napraviti **view** za brisanje oglasa. Link ka ovoj ruti treba biti dostupan na
+svakoj stranici za izmenu oglasa. Dozvoliti brisanje samo vlasnicima oglasa.
