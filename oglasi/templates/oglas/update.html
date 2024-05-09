@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Izmeni oglas{% endblock %}</h1>
+{% endblock %} {% block content %}
+<form method="post">
+    <label for="username">Naslov</label>
+    <input
+        name="naslov"
+        id="naslov"
+        required
+        type="text"
+        value={{oglas['naslov']}}
+    />
+    <label for="opis">Opis</label>
+    <input
+        name="opis"
+        id="opis"
+        required
+        type="text"
+        value={{oglas['opis']}}
+    />
+    <label for="kategorija">Kategorija</label>
+    <select
+        name='kategorija'
+        required
+        value={{ oglas['kategorija_id']}}
+    >
+    
+    {% for kat in kategorije %}
+        <option value= {{kat["id"]}} >{{kat["naziv"]}}</option>
+    {% endfor %}
+    </select>
+    <label for="cena">Cena</label>
+    <input
+        type="number"
+        name='cena'
+        required
+        value={{ oglas['cena']}}
+    />
+    <input
+        type="submit"
+        value="Sacuvaj izmene"
+    />
+    <a href={{url_for("oglas.delete", id=oglas['id'])}}>Izbrisi</a>
+</form>
+{% endblock %}

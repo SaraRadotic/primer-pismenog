@@ -1,5 +1,7 @@
-from flask import Flask
+from flask import Flask, render_template
 import os
+
+from oglasi.db import get_db
 
 
 def create_app():
@@ -19,9 +21,19 @@ def create_app():
     from . import db
     db.init_app(app)
     
+    from . import auth, oglas
+    app.register_blueprint(auth.bp)
+    app.register_blueprint(oglas.bp)
+    app.add_url_rule('/', endpoint='index')
     @app.route("/heartbeat", methods=["GET"])
     def heartbeat():
         return "OK", 200
 
+    @app.route("/", methods=["GET"])
+    def index():
+        db = get_db()
+        oglasi = db.execute("SELECT * FROM oglas JOIN kategorija ON oglas.kategorija_id = kategorija.id").fetchall()
+        print(oglasi[0]['naziv'])
+        return render_template("oglas/index.html", oglasi=oglasi)
     return app
 

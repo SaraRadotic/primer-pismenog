@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block header %}
+
+<h1>{% block title%} Svi oglasi {%endblock%}</h1>
+
+ {% endblock %} {% block content %} 
+{% if g.user %}
+<a
+    href="{{url_for('oglas.create')}}"
+    class="action"
+    >Dodaj Oglas</a
+>
+{% endif %}
+{% for oglas in oglasi %}
+<article class="post">
+    <header>
+        <div>
+            <a href={{ url_for("oglas.view", id=oglas['id']) }}><h1>{{ oglas['naslov']}}</h1></a>
+            <a href="/"><p>Kategorija: {{ oglas['naziv']}}</p></a>
+            <p>Cena: {{ oglas['cena']}}</p>
+            {% if g.user['id'] == oglas['korisnik_id'] %}
+                <a href={{ url_for("oglas.update", id=oglas['id']) }}>Izmeni</a>
+            {% endif %}
+        </div>
+    </header>
+    {% endfor %}
+</article>
+{% endblock %}

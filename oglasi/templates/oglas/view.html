@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Novi oglas{% endblock %}</h1>
+{% endblock %} {% block content %}
+<form method="post">
+    <label for="username">Naslov</label>
+    <input
+        name="naslov"
+        id="naslov"
+        required
+        type="text"
+    />
+    <label for="opis">Opis</label>
+    <input
+        name="opis"
+        id="opis"
+        required
+        type="text"
+    />
+    <label for="kategorija">Kategorija</label>
+    <select
+        name='kategorija'
+        required
+    >
+    
+    {% for kat in kategorije %}
+        <option value= {{kat["id"]}} >{{kat["naziv"]}}</option>
+    {% endfor %}
+    </select>
+    <label for="cena">Cena</label>
+    <input
+        type="number"
+        required
+    />
+    <input
+        type="submit"
+        value="Kreiraj oglas"
+    />
+</form>
+{% endblock %}
