@@ -1,10 +1,9 @@
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for, g
-from werkzeug.security import check_password_hash, generate_password_hash
 import functools
 from .db import get_db
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 
-@bp.route("/login", methods=["GET","POST"])
+@bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         # uzimamo podatke iz forme

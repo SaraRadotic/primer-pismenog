@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import os
 
 from oglasi.db import get_db
@@ -21,14 +21,16 @@ def create_app():
     from . import db
     db.init_app(app)
     
-    from . import auth, oglas
+    from . import auth, oglas, kategorije
     app.register_blueprint(auth.bp)
     app.register_blueprint(oglas.bp)
+    app.register_blueprint(kategorije.bp)
     app.add_url_rule('/', endpoint='index')
     @app.route("/heartbeat", methods=["GET"])
     def heartbeat():
         return "OK", 200
 
+    
     @app.route("/", methods=["GET"])
     def index():
         db = get_db()

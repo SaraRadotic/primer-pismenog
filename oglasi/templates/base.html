@@ -21,6 +21,9 @@
 <section class="content">
     <header>{% block header %}{% endblock %}</header>
     {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-    {% endfor %} {% block content %}{% endblock %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}
+        Ovde ide sadrzaj onog template-a koji nasledjuje base
+    {% endblock %}
 </section>

@@ -42,16 +42,17 @@ def update(id):
     oglas = db.execute("SELECT * FROM oglas WHERE id = ?", (id,)).fetchone()
     return render_template("oglas/update.html", oglas=oglas, kategorije=kategorije)
 
-@bp.route("/oglas/<int:id>", methods=["GET"])
+@bp.route("/<int:id>", methods=["GET"])
 def view(id):
     db = get_db()
     try:
         oglas = db.execute("SELECT * FROM oglas WHERE id = ?", (id,)).fetchone()
+        kategorija = db.execute("SELECT naziv FROM kategorija WHERE id = ?", (oglas["kategorija_id"],)).fetchone()
     except:
         flash("Oglas ne postoji")
         return redirect(url_for("oglas.index"))
     
-    return render_template("oglas/view.html", oglas=oglas)
+    return render_template("oglas/view.html", oglas=oglas, kategorija=kategorija['naziv'])
 
 @bp.route("/delete/<int:id>", methods=["GET"])
 def delete(id):
@@ -64,4 +65,4 @@ def delete(id):
 def kategorija(id):
     db = get_db()
     oglasi = db.execute("SELECT * FROM oglas WHERE kategorija_id = ?", (id,)).fetchall()
-    return render_template("index.html", oglasi=oglasi)
+    return render_template("oglas/index.html", oglasi=oglasi)

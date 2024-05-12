@@ -2,7 +2,8 @@
 
 <h1>{% block title%} Svi oglasi {%endblock%}</h1>
 
- {% endblock %} {% block content %} 
+ {% endblock %} 
+ {% block content %} 
 {% if g.user %}
 <a
     href="{{url_for('oglas.create')}}"
@@ -10,11 +11,12 @@
     >Dodaj Oglas</a
 >
 {% endif %}
+<a href={{ url_for('kategorije.index')}}>Statistke po kategorijama</a>
 {% for oglas in oglasi %}
 <article class="post">
     <header>
         <div>
-            <a href={{ url_for("oglas.view", id=oglas['id']) }}><h1>{{ oglas['naslov']}}</h1></a>
+            <a href={{ url_for("oglas.view", id=oglas['id']) }}><h1>{{ oglas['naslov'] }}</h1></a>
             <a href="/"><p>Kategorija: {{ oglas['naziv']}}</p></a>
             <p>Cena: {{ oglas['cena']}}</p>
             {% if g.user['id'] == oglas['korisnik_id'] %}

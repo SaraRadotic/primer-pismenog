@@ -1,0 +1,6 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %} {% block content %} {% for d in data %}
+<div>{{d['naziv']}}</div>
+<div>{{d['broj']}}</div>
+{% endfor %} {% endblock %}
